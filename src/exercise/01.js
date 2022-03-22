@@ -5,21 +5,22 @@ import * as React from 'react'
 
 // (prevState, nextState)
 // state, action
-const countReducer = (state, newState) => {
+// first param is the previous(current) state. second param is whatever is passed to the dispactch
+const countReducer = (count, step) => {
 
-  console.log('state', state)
-  console.log('newState', newState)
-  return newState + 1
+  console.log('count', count)
+  console.log('step', step)
+  return count + step
 
 }
 
-function Counter({ initialCount = 0, step = 1 }) {
+function Counter({ initialCount = 0, step = 2 }) {
 
   // const [state, dispatch] = useReducer(reducer, initialArg, init);
   const [count, changeCount] = React.useReducer(countReducer, initialCount)
 
   const increment = () => {
-    changeCount(count)
+    changeCount(step)
   }
 
   return <button onClick={ increment }>{ count }</button>
